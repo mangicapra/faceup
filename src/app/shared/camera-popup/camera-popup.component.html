@@ -1,0 +1,13 @@
+<div *ngIf="!dataToReturn" class="takePhoto">
+    <video #video id="video" width="640" height="480" autoplay></video>
+    <button id="snap" class="success" (click)="capture()">Snap Photo</button>
+    <canvas #canvas id="canvas" width="640" height="480"></canvas>
+</div>
+
+<div class="takePhoto" *ngIf="dataToReturn">
+    <img [src]="dataToReturn" alt="Profile image">
+    <div class="space">
+            <button id="snap" (click)="retake()">Retake</button>
+            <button id="snap" (click)="sendImg()" class="success">OK</button>
+    </div>
+</div>

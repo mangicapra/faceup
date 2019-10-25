@@ -1,0 +1,65 @@
+<div class="form-structor">
+	<div [class.slide-up]="visible" class="signup">
+        <form (ngSubmit)="signUp()" [formGroup]="signupForm">
+            <h2 class="form-title" (click)="visible = !visible" id="signup"><span>or</span>Sign up</h2>
+            <div class="form-holder">
+                <div class="container">
+                    <input [class.error]="firstName.invalid && firstName.touched" formControlName="firstName" type="text" class="input" placeholder="First name*" />
+                    <span class="border"></span>
+                </div>
+                <div class="container">
+                    <input [class.error]="lastName.invalid && lastName.touched" formControlName="lastName" type="text" class="input" placeholder="Last name*" />
+                    <span class="border"></span>
+                </div>
+                <div class="container">
+                    <input [class.error]="email.invalid && email.touched" formControlName="email" type="email" class="input" placeholder="Email*" />
+                    <span class="border"></span>
+                </div>
+                <div class="container">
+                    <input [class.error]="password.invalid && password.touched" formControlName="password" type="password" class="input" placeholder="Password*" />
+                    <span class="border"></span>
+                </div>
+                <div class="img">
+                    <div>
+                        <a class="r-link ai-element ai-element_type1 ai-element1">
+                            <span class="ai-element__label">Upload a photo</span>
+                            <input formControlName="file" (change)="displayProfile(file.files)" #file type="file" accept="image/*">
+                        </a>
+                        <a (click)="triggerCamera()" class="r-link ai-element ai-element_type1 ai-element1">
+                            <span class="ai-element__label">Take a photo</span>
+                        </a>
+                    </div>
+                    <div *ngIf="profileImg" class="imgPrew">
+                        <img class="profileImg" [src]="profileImg" alt="profileImg">
+                        <mat-icon (click)="profileImg = null">close</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="signupForm.invalid && !profileImg" class="submit-btn">Sign up</button>
+        </form>
+	</div>
+	<div [class.slide-up]="!visible" class="login">
+        <form (ngSubmit)="loing()" [formGroup]="loginForm">
+            <div class="center">
+                <h2 class="form-title" (click)="visible = !visible" id="login"><span>or</span>Log in</h2>
+                <div class="form-holder">
+                    <div class="container">
+                        <input formControlName="email" [class.error]="lEmail.invalid && lEmail.touched" type="email" class="input" placeholder="Email" />
+                        <span class="border"></span>
+                    </div>
+                    <div class="container">
+                        <input formControlName="password" [class.error]="lPassword.invalid && lPassword.touched" type="password" class="input" placeholder="Password" />
+                        <span class="border"></span>
+                    </div>
+                </div>
+                <button [disabled]="loginForm.invalid" type="submit" class="submit-btn">Log in</button>
+                <h2 class="form-title">or</h2>
+                <a (click)="faceLogin()" class="r-link ai-element ai-element_type1 ai-element1"><span class="ai-element__label">use your face</span></a>
+                <div class="position-relative">
+                    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/giphy-6-1510855251.gif?crop=1xw:1xh;center,top&resize=768:*" alt="gif">
+                    <mat-icon>not_interested</mat-icon>
+                </div>
+            </div>
+        </form>
+	</div>
+</div>

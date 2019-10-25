@@ -1,1 +1,162 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+
+* {
+    font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+a {
+	text-decoration: none;
+}
+.r-link{
+    --uirLinkDisplay: var(--rLinkDisplay, inline-flex);
+    --uirLinkTextColor: var(--rLinkTextColor);
+    --uirLinkTextDecoration: var(--rLinkTextDecoration, none);
+    display: var(--uirLinkDisplay) !important;
+    color: var(--uirLinkTextColor) !important;
+    text-decoration: var(--uirLinkTextDecoration) !important;
+  }
+  .ai-element{
+	--uiaiElementDisplay: var(--aiElementDisplay, inline-flex);	
+	--uiaiElementPadding: var(--aiElementPadding, var(--aiElementPaddingTop, 0) var(--aiElementPaddingRight, 0) var(--aiElementPaddingBottom, 0) var(--aiElementPaddingLeft, 0));
+	--uiaiElementColor: var(--aiElementColor);
+
+	display: var(--uiaiElementDisplay);
+	position: relative;
+	overflow: hidden;
+}
+
+a.ai-element{
+	padding: var(--uiaiElementPadding);
+}
+.ai-element__label{
+	color: var(--uiaiElementColor);
+}
+.ai-element_type1{
+	--uiaiElementLineWeight: var(--aiElementLineWeight, 2px);
+	--uiaiElementLineColor: var(--aiElementLineColor, #000);	
+}
+
+.ai-element_type1::before, 
+.ai-element_type1::after{
+	width: 100%;
+	height: var(--uiaiElementLineWeight);
+	left: 0;
+}
+
+.ai-element_type1::before{
+	top: 0;
+}
+
+.ai-element_type1::after{
+	bottom: 0;
+}
+
+.ai-element_type1 .ai-element__label::before,
+.ai-element_type1 .ai-element__label::after{
+	width: var(--uiaiElementLineWeight);
+	height: 100%;
+	top: 0;
+}
+
+.ai-element_type1 .ai-element__label::before{
+	left: 0;
+}
+
+.ai-element_type1 .ai-element__label::after{
+	right: 0;
+}
+
+.ai-element_type1::before,
+.ai-element_type1::after,
+.ai-element_type1 .ai-element__label::before,
+.ai-element_type1 .ai-element__label::after{
+	content: "";     
+	background-color: var(--uiaiElementLineColor);
+	position: absolute; 
+	opacity: 1;
+
+	will-change: transform, opacity;
+	transition-property: transform, opacity;
+}
+
+.ai-element_type1:hover::before,
+.ai-element_type1:hover::after,
+.ai-element_type1:hover .ai-element__label::before,
+.ai-element_type1:hover .ai-element__label::after{
+	opacity: 0;
+}
+.ai-element1::before,
+.ai-element1::after,
+.ai-element1 .ai-element__label::before,
+.ai-element1 .ai-element__label::after{
+	transform: translate3d(0, 0, 0);
+	transition-timing-function: ease-out;
+	transition-duration: .2s, .15s;
+}
+
+.ai-element1:hover::before,
+.ai-element1:hover::after,
+.ai-element1:hover .ai-element__label::before,
+.ai-element1:hover .ai-element__label::after{
+	transition-duration: .25s;
+}
+
+.ai-element1:hover::before{
+	transform: translate3d(-105%, 0, 0);
+}
+
+.ai-element1:hover::after{
+	transform: translate3d(105%, 0, 0);
+}
+
+.ai-element1:hover .ai-element__label::before{
+	transform: translate3d(0%, -100%, 0);
+}
+
+.ai-element1:hover .ai-element__label::after{
+	transform: translate3d(0%, 100%, 0);
+}
+.ai-element__label{
+	--uiaiElementColorHover: var(--aiElementColorHover);	
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.ai-element:hover .ai-element__label{
+	color: var(--uiaiElementColorHover);
+}
+.ai-element{
+	--aiElementLineWeight: 1px;
+	--aiElementLineColor: #243aab;
+	--aiElementColor: #1b255a;
+	--aiElementColorHover: #243aab;
+}
+
+.ai-element_type1,
+.ai-element_type3{
+	--aiElementPadding: 10px 15px;
+}
+
+.ai-element_type3{
+	--aiElementColor: #fff;
+}
+
+.camera-popup mat-dialog-container {
+    background-color: #E1E8EE;
+}
+
+.successMessage {
+    background-color: #5cb85c;
+}
+.successMessage {
+    background-color: #e3504d;
+}
+.position-relative {
+    position: relative;
+}

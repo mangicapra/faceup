@@ -1,0 +1,17 @@
+<div class="img">
+    <div>
+        <a class="r-link ai-element ai-element_type1 ai-element1">
+            <span class="ai-element__label">Upload a photo</span>
+            <input (change)="displayProfile(file.files)" #file type="file" accept="image/*">
+        </a>
+        <a (click)="triggerCamera()" class="r-link ai-element ai-element_type1 ai-element1">
+            <span class="ai-element__label">Take a photo</span>
+        </a>
+    </div>
+    <div *ngIf="profileImg" class="imgPrew">
+        <img class="profileImg" [src]="profileImg" alt="profileImg">
+        <mat-icon (click)="profileImg = null">close</mat-icon>
+    </div>
+</div>
+
+<button type="submit" class="submit-btn">Sign up</button>

@@ -1,0 +1,35 @@
+.container {
+    height: 100vh;
+    background-color: #E1E8EE;
+    padding: 10px;
+
+    .menu {
+        height: 70px;
+        width: 100%;
+        border-top-right-radius: 50%;
+        border-top-left-radius: 50%;
+        background-color: #fff;
+        position: fixed;
+        bottom: 0;    
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        a {
+            width: calc(100% / 3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100%;
+            color: rgba(0,0,0,0.4);
+            &:nth-child(2) {
+                border-left: 2px solid #E1E8EE;
+                border-right: 2px solid #E1E8EE;
+            }
+            &.active {
+                color: #000;
+            }
+        }
+    }
+}
