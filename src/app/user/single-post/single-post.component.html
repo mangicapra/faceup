@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div [ngStyle]="{'background-image': 'url('+ env.baseUrl + (post$ | async)?.author_image +')'}" mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{(post$ | async)?.author}}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="env.baseUrl + (post$ | async)?.image" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <p>{{(post$ | async)?.title}}</p>
+    </mat-card-content>
+</mat-card>
+    

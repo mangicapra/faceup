@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { UserComponent } from './user/user.component';
 import { PostComponent } from './user/post/post.component';
 import { FeedComponent } from './user/feed/feed.component';
+import { SinglePostComponent } from './user/single-post/single-post.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'feeds',
         component: FeedComponent
+      },
+      {
+        path: 'feeds/:id',
+        component: SinglePostComponent
       },
       {
         path: 'add-post',

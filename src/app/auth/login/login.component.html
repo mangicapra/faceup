@@ -4,19 +4,7 @@
             <h2 class="form-title" (click)="visible = !visible" id="signup"><span>or</span>Sign up</h2>
             <div class="form-holder">
                 <div class="container">
-                    <input [class.error]="firstName.invalid && firstName.touched" formControlName="firstName" type="text" class="input" placeholder="First name*" />
-                    <span class="border"></span>
-                </div>
-                <div class="container">
-                    <input [class.error]="lastName.invalid && lastName.touched" formControlName="lastName" type="text" class="input" placeholder="Last name*" />
-                    <span class="border"></span>
-                </div>
-                <div class="container">
-                    <input [class.error]="email.invalid && email.touched" formControlName="email" type="email" class="input" placeholder="Email*" />
-                    <span class="border"></span>
-                </div>
-                <div class="container">
-                    <input [class.error]="password.invalid && password.touched" formControlName="password" type="password" class="input" placeholder="Password*" />
+                    <input [class.error]="fullname.invalid && fullname.touched" formControlName="fullname" type="text" class="input" placeholder="First name*" />
                     <span class="border"></span>
                 </div>
                 <div class="img">

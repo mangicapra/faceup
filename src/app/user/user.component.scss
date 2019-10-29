@@ -1,7 +1,11 @@
 .container {
-    height: 100vh;
-    background-color: #E1E8EE;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 100px;
+
+    .content {
+        width: 25%;
+        margin: 0 auto;
+    }
 
     .menu {
         height: 70px;

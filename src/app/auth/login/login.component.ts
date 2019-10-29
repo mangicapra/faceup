@@ -22,10 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
+      fullname: new FormControl('', Validators.required),
       file: new FormControl('', Validators.required)
     });
 
@@ -76,10 +73,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get firstName() { return this.signupForm.get('firstName'); }
-  get lastName() { return this.signupForm.get('lastName'); }
-  get email() { return this.signupForm.get('email'); }
-  get password() { return this.signupForm.get('password'); }
+  get fullname() { return this.signupForm.get('fullname'); }
 
   get lEmail() { return this.loginForm.get('email'); }
   get lPassword() { return this.loginForm.get('password'); }

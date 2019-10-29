@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CameraPopupComponent } from 'src/app/shared/camera-popup/camera-popup.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -11,9 +14,18 @@ export class PostComponent implements OnInit {
   image: { url: string | ArrayBuffer; name: any; };
   profileImg: any;
   uploadfile: any;
-  constructor(public dialog: MatDialog, private snackBar: MatSnackBar) {}
+  newPostForm: FormGroup;
 
-  ngOnInit() {}
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar, private apiService: ApiService, private router: Router) {}
+
+  ngOnInit() {
+    this.newPostForm = new FormGroup({
+      title: new FormControl('', Validators.required),
+      image: new FormControl('', Validators.required)
+    });
+  }
+
+  get title() { return this.newPostForm.get('title'); }
 
   /**
    *
@@ -42,8 +54,29 @@ export class PostComponent implements OnInit {
       panelClass: 'camera-popup'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.profileImg = result;
+    const dialogSubmitSubscription = dialogRef.componentInstance.submitClicked.subscribe(res => {
+      fetch(res)
+      .then(f => f.blob())
+      .then(blob => {
+        const file = new File([blob], 'profile_photo.jpg');
+        this.uploadfile = file;
+      });
+      this.profileImg = res;
+      dialogSubmitSubscription.unsubscribe();
+    });
+  }
+
+  createPost() {
+    const formData = new FormData();
+    formData.append('image', this.uploadfile);
+    formData.append('user_id', '1');
+    formData.append('title', this.title.value);
+
+    this.apiService.createPost(formData).subscribe(res => {
+      this.snackBar.open('You have successfully created new post.', null, {
+        duration: 3000,
+        panelClass: 'successMessage'
+      }).afterDismissed().subscribe(d => this.router.navigateByUrl('user/feeds'));
     });
   }
 }

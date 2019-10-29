@@ -1,1 +1,10 @@
-<p>feed works!</p>
+<mat-card *ngFor="let post of (post$ | async)" [routerLink]="[ post.id ]" class="example-card">
+    <mat-card-header>
+        <div [ngStyle]="{'background-image': 'url('+ env.baseUrl + post?.author_image +')'}" mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{post?.author}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="env.baseUrl + post?.image" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <p>{{post?.title}}</p>
+    </mat-card-content>
+</mat-card>

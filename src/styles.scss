@@ -8,7 +8,11 @@
 }
 html, body {
     margin: 0;
-    padding: 0;
+	padding: 0;
+	background-color: #E1E8EE;
+}
+textarea {
+	resize: none !important;
 }
 a {
 	text-decoration: none;
@@ -154,7 +158,7 @@ a.ai-element{
 .successMessage {
     background-color: #5cb85c;
 }
-.successMessage {
+.errorMessage {
     background-color: #e3504d;
 }
 .position-relative {
