@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { environment } from 'src/environments/environment';
+import {MatDialog} from '@angular/material/dialog';
+import { ZoomImagePopupComponent } from './zoom-image-popup/zoom-image-popup.component';
 
 @Component({
   selector: 'app-single-post',
@@ -13,14 +15,24 @@ import { environment } from 'src/environments/environment';
 export class SinglePostComponent implements OnInit {
 
   postId: string;
-  post$: Observable<Post>;
+  postSubscription: Subscription;
+  post: Post;
   env = environment;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.postId = this.route.snapshot.paramMap.get('id');
-    this.post$ = this.apiService.getSinglePost(this.postId);
+    this.postSubscription = this.apiService.getSinglePost(this.postId).subscribe((post: Post) => this.post = post);
+  }
+
+  zoomImg() {
+    const img = this.env.baseUrl + this.post.image;
+
+    const dialogRef = this.dialog.open(ZoomImagePopupComponent, {
+      panelClass: 'zoom-image-popup',
+      data: img
+    });
   }
 
 }

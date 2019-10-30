@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { CameraPopupComponent } from 'src/app/shared/camera-popup/camera-popup.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,11 @@ export class LoginComponent implements OnInit {
   signupForm: FormGroup;
   loginForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar, private apiService: ApiService) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      fullname: new FormControl('', Validators.required),
-      file: new FormControl('', Validators.required)
+      fullname: new FormControl('', Validators.required)
     });
 
     this.loginForm = new FormGroup({
@@ -64,8 +64,8 @@ export class LoginComponent implements OnInit {
       fetch(res)
       .then(f => f.blob())
       .then(blob => {
-        const file = new File([blob], 'Profile photo');
-        this.signupForm.value.file = file;
+        const file = new File([blob], 'profile_photo.jpg');
+        this.uploadfile = file;
       });
       this.profileImg = res;
       dialogSubmitSubscription.unsubscribe();
@@ -80,10 +80,19 @@ export class LoginComponent implements OnInit {
 
 
   signUp() {
-    console.log(this.signupForm.value);
-    this.snackBar.open('You have successfully singed in', null, {
-      duration: 3000,
-      panelClass: 'successMessage'
+    const formData = new FormData();
+    formData.append('name', this.signupForm.value.fullname);
+    formData.append('email', 'test@test.com');
+    formData.append('image', this.uploadfile);
+
+    this.apiService.signUp(formData).subscribe(res => {
+      console.log(res);
+      this.signupForm.reset();
+      this.uploadfile = null;
+      this.snackBar.open('You have successfully singed in', null, {
+        duration: 3000,
+        panelClass: 'successMessage'
+      });
     });
   }
 

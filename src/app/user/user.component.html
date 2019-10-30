@@ -17,4 +17,10 @@
             Feeds
         </a>
     </div>
+    <div class="notification">
+        <button class="trigger" [ngStyle]="{'background-color': notifications.length > 0 ? '#ff4081' : '#6B92A4'}" mat-button [matMenuTriggerFor]="menu"><mat-icon>{{ notifications.length > 0 ? 'notifications_active' : 'notifications' }}</mat-icon></button>
+        <mat-menu #menu="matMenu">
+            <button *ngFor="let notification of notifications" mat-menu-item></button>
+        </mat-menu>
+    </div>
 </div>

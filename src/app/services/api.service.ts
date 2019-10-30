@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from '../models/post';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,10 @@ import { Post } from '../models/post';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+
+  signUp(data): Observable<User> {
+    return this.http.post<User>(`${environment.baseUrl}/users/register`, data);
+  }
 
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.baseUrl}/posts/index`);
